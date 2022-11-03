@@ -8,6 +8,8 @@ This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
+Version de flutter: 3.3.7
+
 carpeta domain: van todos los archivos como modelos, servicios y interfaces de cada clase a usar.
 carpeta infrastructure: van a ir todos los archivos que contengan funciones con peticiones a la base de datos.
 carpeta presentation: van todos los widgets a utilizar.
