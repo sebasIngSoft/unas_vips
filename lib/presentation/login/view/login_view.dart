@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unas_vip/presentation/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -10,41 +11,43 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    Image(image: AssetImage('assets/logo.png'), width: 200, height: 200);
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.black87,
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //Login
-
-              SizedBox(height: 90),
-              Icon(Icons.nordic_walking_sharp),
+              Image(
+                  image: AssetImage('assets/logo.png'),
+                  width: 200,
+                  height: 200),
               Text(
                 'Login',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 50,
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    color: Colors.white),
               ),
-              SizedBox(height: 30),
 
               //Email TextField
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.black87,
                       border: Border.all(color: Color(0xFF6F0C41)),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintText: 'Correo',
-                        border: InputBorder.none,
-                      ),
+                          hintText: 'Correo',
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ),
@@ -56,16 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.black87,
                       border: Border.all(color: Color(0xFF6F0C41)),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      style: TextStyle(color: Colors.white),
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Contraseña',
                         border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -79,15 +84,25 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text('Si no tiene usuario puede registrarse ',
                       style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: const TextStyle(
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
-                      )),
-                  Text('aquí',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ))
+                      ),
+                    ),
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MenuRegister()),
+                      ),
+                    },
+                    child: const Text('aquí'),
+                  ),
                 ],
               ),
+
               SizedBox(height: 30),
 
               //ding in button
@@ -96,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   padding: EdgeInsets.all(25),
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 71, 19, 109),
+                      color: Color.fromRGBO(102, 0, 51, 0.4),
                       borderRadius: BorderRadius.circular(25.0)),
                   child: Center(
                     child: Text(
