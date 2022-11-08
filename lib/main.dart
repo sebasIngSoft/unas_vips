@@ -21,8 +21,15 @@ class MyApp extends StatelessWidget {
       ),
 
       //home: MenuRegister(),
-      home: LoginPage(),
-      //home: NegocioRegister(),
+      home: Container(
+        child: LoginPage(),
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("assets/logo_fondo.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
   }
 }

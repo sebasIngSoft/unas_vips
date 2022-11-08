@@ -6,39 +6,28 @@ class NegocioRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black87,
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(height: 40),
-
-            //Nombre
-            Container(
-              //margin: const EdgeInsets.all(30.0),
-              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.white)),
-              child: Text('Registro',
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-            ),
-
-            //textArea Nombre
-            MyCustomForm(),
-
-            //textArea NIT
-
-            //textArea Nombre Empresa
-
-            //textArea Telefono
-
-            //textArea Correo
-
-            //textArea Contrasena
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //Nombre
+              Container(
+                //margin: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.white)),
+                child: Text('Registro',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )),
+              ),
+              MyCustomForm(),
+            ],
+          ),
         ),
       ),
     );
@@ -56,11 +45,6 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -72,27 +56,55 @@ class MyCustomFormState extends State<MyCustomForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
-
           //Nombre Completo
           campoFormulario('Nombre', 'Ingrese su nombre'),
+
           SizedBox(height: 10),
+          //Nit
           campoFormulario('NIT', 'ingrese un nit correcto'),
+
+          SizedBox(height: 10),
+          //Nombre Empresa
+          campoFormulario(
+              'Nombre empresa', 'Por favor llene el campo nombre empresa'),
+
+          SizedBox(height: 10),
+
+          //Telefono
+          campoFormulario('Telefono', 'ingrese un telefono'),
+
+          SizedBox(height: 10),
+
+          //Correo
+          campoFormulario('Correo', 'ingrese un coreo correcto'),
+
+          SizedBox(height: 10),
+
+          //Contraseña
+          campoFormulario('Contraseña', 'contraseña invalida'),
 
           //Button
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.only(top: 16.0, left: 110),
             child: ElevatedButton(
               onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
                 }
               },
-              child: const Text('Submit'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+              ),
+              child: const Text(
+                'Iniciar sesión',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ),
         ],
@@ -111,6 +123,7 @@ Widget campoFormulario(String hintText, String validatorTexts) {
         // border: Border(bottom: BorderSide.none),
         borderRadius: BorderRadius.circular(5),
       ),
+      margin: new EdgeInsets.only(bottom: 5.0),
       child: Padding(
         padding: const EdgeInsets.only(left: 20),
         child: TextFormField(

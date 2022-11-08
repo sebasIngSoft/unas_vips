@@ -7,6 +7,7 @@ class MenuRegister extends StatefulWidget {
 }
 
 class _MenuRegisterState extends State<MenuRegister> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,20 +83,24 @@ class _MenuRegisterState extends State<MenuRegister> {
 
               //button siguiente
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 55.0),
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(102, 0, 51, 0.4),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Center(
-                    child: Text(
-                      'Siguiente',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+                  ),
+                  child: const Text(
+                    'Siguiente',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
                 ),
