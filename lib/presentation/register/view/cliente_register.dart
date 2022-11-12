@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:unas_vip/presentation/register/widget/input_custom.dart';
+import 'package:unas_vip/presentation/routes/routes.dart';
 
-class NegocioRegister extends StatelessWidget {
-  const NegocioRegister({Key? key}) : super(key: key);
+class ClienteRegister extends StatelessWidget {
+  const ClienteRegister({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      //backgroundColor: Colors.black87,
+      backgroundColor: Colors.black87,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -22,12 +23,11 @@ class NegocioRegister extends StatelessWidget {
             ),
             child: Column(
               children: [
+                SizedBox(height: 90),
                 //Nombre
-                SizedBox(height: 50),
                 Container(
                   //margin: const EdgeInsets.all(30.0),
                   padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-
                   decoration:
                       BoxDecoration(border: Border.all(color: Colors.black)),
                   child: Text('Registro',
@@ -37,46 +37,39 @@ class NegocioRegister extends StatelessWidget {
                         color: Colors.black,
                       )),
                 ),
-
                 SizedBox(height: 20),
+
                 //Nombre Completo
-
                 InputCustom(
-                    hintText: 'Nombre', validatorTexts: 'Ingrese su nombre'),
-
-                SizedBox(height: 7),
-                //Nit
-                InputCustom(
-                    hintText: 'NIT', validatorTexts: 'Ingrese un NIT correcto'),
+                    hintText: 'Nombre Completo',
+                    validatorTexts: 'Ingrese un nombre'),
 
                 SizedBox(height: 7),
-                //Nombre Empresa
+
+                //Cedula
                 InputCustom(
-                    hintText: 'Nombre empresa',
-                    validatorTexts: 'Ingrese un nombre de empresa'),
+                    hintText: 'Cedula', validatorTexts: 'Ingrese un nombre'),
 
                 SizedBox(height: 7),
 
                 //Telefono
                 InputCustom(
                     hintText: 'Telefono',
-                    validatorTexts: 'ingrese un telefono'),
+                    validatorTexts: 'Ingrese un telefono'),
 
                 SizedBox(height: 7),
 
                 //Correo
                 InputCustom(
-                    hintText: 'Correo',
-                    validatorTexts: 'ingrese un coreo correcto'),
+                    hintText: 'Correo', validatorTexts: 'Ingrese un Correo'),
 
                 SizedBox(height: 7),
 
                 //Contraseña
                 InputCustom(
                     hintText: 'Contraseña',
-                    validatorTexts: 'contraseña invalida'),
+                    validatorTexts: 'Ingrese un Contraseña'),
 
-                //Button
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, left: 110),
                   child: ElevatedButton(
@@ -88,10 +81,11 @@ class NegocioRegister extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                       backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                     ),
                     child: const Text(
-                      'Siguiente',
+                      'Registrarse',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -100,6 +94,7 @@ class NegocioRegister extends StatelessWidget {
                     ),
                   ),
                 ),
+                // campoFormulario(),
               ],
             ),
           ),

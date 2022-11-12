@@ -11,9 +11,17 @@ class _MenuRegisterState extends State<MenuRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      // backgroundColor: Colors.black87,
+
       body: Center(
-        child: Padding(
+        child: Container(
+          width: double.infinity,
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage("assets/logo_fondo.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
@@ -25,12 +33,12 @@ class _MenuRegisterState extends State<MenuRegister> {
                 //margin: const EdgeInsets.all(30.0),
                 padding: const EdgeInsets.only(left: 50.0, right: 50.0),
                 decoration:
-                    BoxDecoration(border: Border.all(color: Colors.white)),
+                    BoxDecoration(border: Border.all(color: Colors.black)),
                 child: Text('Tipo de \nUsuario',
                     style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     )),
               ),
               SizedBox(height: 40),
@@ -59,7 +67,12 @@ class _MenuRegisterState extends State<MenuRegister> {
 
               //cliente button
               RawMaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ClienteRegister()),
+                  );
+                },
                 elevation: 8.0,
                 fillColor: Color.fromRGBO(102, 0, 51, 0.4),
                 child: Text(

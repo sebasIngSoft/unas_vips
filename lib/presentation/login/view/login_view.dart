@@ -13,9 +13,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(102, 0, 0, 0),
-      body: SafeArea(
-        child: Center(
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: 800,
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage("assets/logo_fondo.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          padding: const EdgeInsets.only(bottom: 20.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -110,11 +118,10 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeCliente()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),

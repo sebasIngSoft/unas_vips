@@ -15,21 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
-      //home: MenuRegister(),
-      home: Container(
-        child: LoginPage(),
-        decoration: new BoxDecoration(
-          image: new DecorationImage(
-            image: new AssetImage("assets/logo_fondo.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
+      home: LoginPage(),
     );
   }
 }
