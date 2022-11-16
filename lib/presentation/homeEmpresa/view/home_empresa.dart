@@ -136,11 +136,10 @@ class _MenuEmpresaState extends State<MenuEmpresa> {
                     //padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => GestionServicio()),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Perfil()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),

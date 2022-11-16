@@ -12,3 +12,4 @@ export 'package:unas_vip/presentation/homeEmpresa/view/home_empresa.dart';
 export 'package:unas_vip/presentation/homeEmpresa/view/historial_citas.dart';
 export 'package:unas_vip/presentation/homeEmpresa/view/gestion_manicurista.dart';
 export 'package:unas_vip/presentation/homeEmpresa/view/gestion_servicios.dart';
+export 'package:unas_vip/presentation/homeEmpresa/view/perfil.dart';
