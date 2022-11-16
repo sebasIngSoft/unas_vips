@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
-class HomeCliente extends StatefulWidget {
-  HomeCliente({Key? key}) : super(key: key);
+class MenuEmpresa extends StatefulWidget {
+  MenuEmpresa({Key? key}) : super(key: key);
 
   @override
-  State<HomeCliente> createState() => _HomeClienteState();
+  State<MenuEmpresa> createState() => _MenuEmpresaState();
 }
 
-class _HomeClienteState extends State<HomeCliente> {
+class _MenuEmpresaState extends State<MenuEmpresa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _HomeClienteState extends State<HomeCliente> {
                 //Nombre de la persona
                 Container(
                   child: Text(
-                    'Bienvenid@\n     Carla',
+                    'Bienvenid@ Patas\n         Limpias',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -52,14 +52,14 @@ class _HomeClienteState extends State<HomeCliente> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BuscarNegocio()),
+                              builder: (context) => HitorialCitas()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                           padding: EdgeInsets.only(left: 50, right: 50)),
                       child: const Text(
-                        'Realizar Citass',
+                        'Historial de citas',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -81,14 +81,14 @@ class _HomeClienteState extends State<HomeCliente> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BuscarNegocio()),
+                              builder: (context) => GestionServicio()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                           padding: EdgeInsets.only(left: 40, right: 40)),
                       child: const Text(
-                        'Historial de Citas',
+                        'Servicios',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -110,8 +110,37 @@ class _HomeClienteState extends State<HomeCliente> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BuscarNegocio()),
+                            builder: (context) => GestionManicurista(),
+                          ),
                         );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+                          padding: EdgeInsets.only(left: 80, right: 80)),
+                      child: const Text(
+                        'Gestion Manicurista',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+//
+                SizedBox(height: 20),
+
+                Container(
+                  child: SizedBox(
+                    //padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => GestionServicio()),
+                        // );
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
