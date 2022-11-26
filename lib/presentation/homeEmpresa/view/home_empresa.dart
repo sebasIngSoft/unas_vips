@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
+import 'package:unas_vip/presentation/homeEmpresa/view_model/home_empresa_view_model.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
-class MenuEmpresa extends StatefulWidget {
+class MenuEmpresa extends StatelessWidget {
   MenuEmpresa({Key? key}) : super(key: key);
+  final DataDB dataDB = Get.find();
+  HomeEmpresaViewModel viewModel = HomeEmpresaViewModel();
 
-  @override
-  State<MenuEmpresa> createState() => _MenuEmpresaState();
-}
-
-class _MenuEmpresaState extends State<MenuEmpresa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
-          width: double.infinity,
-          height: 700,
+          width: Get.width,
+          height: Get.height,
           decoration: new BoxDecoration(
             image: new DecorationImage(
               image: new AssetImage("assets/logo_fondo.png"),
@@ -32,8 +32,11 @@ class _MenuEmpresaState extends State<MenuEmpresa> {
                     height: 200),
                 //Nombre de la persona
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text(
-                    'Bienvenid@ Patas\n         Limpias',
+                    'Bienvenid@ ${dataDB.loguiado.empresa}',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -48,13 +51,7 @@ class _MenuEmpresaState extends State<MenuEmpresa> {
                   child: SizedBox(
                     //padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HitorialCitas()),
-                        );
-                      },
+                      onPressed: () => Get.to(HitorialCitas()),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                           padding: EdgeInsets.only(left: 50, right: 50)),
@@ -77,13 +74,7 @@ class _MenuEmpresaState extends State<MenuEmpresa> {
                   child: SizedBox(
                     //padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GestionServicio()),
-                        );
-                      },
+                      onPressed: () => Get.to(GestionServicio()),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                           padding: EdgeInsets.only(left: 40, right: 40)),

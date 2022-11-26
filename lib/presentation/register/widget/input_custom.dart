@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class InputCustom extends StatelessWidget {
   final String hintText, validatorTexts;
+  final TextEditingController? controller;
   const InputCustom(
-      {Key? key, required this.hintText, required this.validatorTexts})
+      {Key? key,
+      required this.hintText,
+      required this.validatorTexts,
+      this.controller})
       : super(key: key);
 
   @override
@@ -22,6 +26,7 @@ class InputCustom extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20),
           child: TextFormField(
             cursorColor: Colors.white,
+            controller: controller,
             style: TextStyle(
               color: Colors.white,
             ),

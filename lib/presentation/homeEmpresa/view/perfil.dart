@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
-class Perfil extends StatefulWidget {
+class Perfil extends StatelessWidget {
   Perfil({Key? key}) : super(key: key);
 
   @override
-  State<Perfil> createState() => _PerfilState();
-}
-
-class _PerfilState extends State<Perfil> {
-  @override
   Widget build(BuildContext context) {
+    final DataDB dataDB = Get.find();
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -50,7 +49,7 @@ class _PerfilState extends State<Perfil> {
                   Padding(
                     padding: const EdgeInsets.only(left: 100, top: 120),
                     child: Text(
-                      'Correo: pepito@gmail.com \n Telefon:31555825689',
+                      'Nombre: ${dataDB.loguiado.nombre}\nEmpresa: ${dataDB.loguiado.empresa}\nCorreo: ${dataDB.loguiado.correo} \n Telefon: ${dataDB.loguiado.telefono}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )

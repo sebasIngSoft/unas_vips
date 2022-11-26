@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/presentation/homeEmpresa/view_model/home_empresa_view_model.dart';
 import 'package:unas_vip/presentation/register/widget/input_custom.dart';
 
 class GestionManicurista extends StatelessWidget {
@@ -6,18 +8,33 @@ class GestionManicurista extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeEmpresaViewModel viewModel = HomeEmpresaViewModel();
+    TextEditingController nombre = TextEditingController();
+    TextEditingController nit = TextEditingController();
+    TextEditingController empresa = TextEditingController();
+    TextEditingController telefono = TextEditingController();
+    TextEditingController correo = TextEditingController();
+    TextEditingController contrasena = TextEditingController();
+
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      //backgroundColor: Colors.black87,
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Get.back(),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            width: double.infinity,
-            height: 700,
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
+            width: Get.width,
+            height: Get.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
                 image: new AssetImage("assets/logo_fondo.png"),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             child: Column(
@@ -42,51 +59,66 @@ class GestionManicurista extends StatelessWidget {
                 //Nombre Completo
 
                 InputCustom(
-                    hintText: 'Nombre', validatorTexts: 'Ingrese su nombre'),
+                  hintText: 'Nombre',
+                  validatorTexts: 'Ingrese su nombre',
+                  controller: nombre,
+                ),
 
                 SizedBox(height: 7),
                 //Nit
                 InputCustom(
-                    hintText: 'NIT', validatorTexts: 'Ingrese un NIT correcto'),
+                  hintText: 'NIT',
+                  validatorTexts: 'Ingrese un NIT correcto',
+                  controller: nit,
+                ),
 
                 SizedBox(height: 7),
                 //Nombre Empresa
                 InputCustom(
-                    hintText: 'Nombre empresa',
-                    validatorTexts: 'Ingrese un nombre de empresa'),
+                  hintText: 'Nombre empresa',
+                  validatorTexts: 'Ingrese un nombre de empresa',
+                  controller: empresa,
+                ),
 
                 SizedBox(height: 7),
 
                 //Telefono
                 InputCustom(
-                    hintText: 'Telefono',
-                    validatorTexts: 'ingrese un telefono'),
+                  hintText: 'Telefono',
+                  validatorTexts: 'ingrese un telefono',
+                  controller: telefono,
+                ),
 
                 SizedBox(height: 7),
 
                 //Correo
                 InputCustom(
-                    hintText: 'Correo',
-                    validatorTexts: 'ingrese un coreo correcto'),
+                  hintText: 'Correo',
+                  validatorTexts: 'ingrese un coreo correcto',
+                  controller: correo,
+                ),
 
                 SizedBox(height: 7),
 
                 //Contraseña
                 InputCustom(
-                    hintText: 'Contraseña',
-                    validatorTexts: 'contraseña invalida'),
+                  hintText: 'Contraseña',
+                  validatorTexts: 'contraseña invalida',
+                  controller: contrasena,
+                ),
 
                 //Button
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0, left: 110),
+                  padding: const EdgeInsets.only(top: 16.0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
-                      }
-                    },
+                    onPressed: () => viewModel.validarRegistro(
+                        context,
+                        nit.text,
+                        nombre.text,
+                        empresa.text,
+                        telefono.text,
+                        correo.text,
+                        contrasena.text),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                     ),

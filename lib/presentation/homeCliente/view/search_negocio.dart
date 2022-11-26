@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
-class BuscarNegocio extends StatefulWidget {
+class BuscarNegocio extends StatelessWidget {
   BuscarNegocio({Key? key}) : super(key: key);
 
   @override
-  State<BuscarNegocio> createState() => _BuscarNegocioState();
-}
-
-class _BuscarNegocioState extends State<BuscarNegocio> {
-  @override
   Widget build(BuildContext context) {
+    final DataDB dataDB = Get.find();
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -91,41 +90,26 @@ class _BuscarNegocioState extends State<BuscarNegocio> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 50),
                                 child: Column(
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Patas limpias",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
+                                  children: dataDB.listManicuristas.value
+                                      .map(
+                                        (element) => ElevatedButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            element.empresa.toString(),
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0.3),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 100),
+                                          ),
                                         ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            Colors.white.withOpacity(0.3),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 100),
-                                      ),
-                                    ),
-                                    // SizedBox(height: 20),
-                                    ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Nails",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            Colors.white.withOpacity(0.3),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 139.9),
-                                      ),
-                                    ),
-                                  ],
+                                      )
+                                      .toList(),
                                 ),
                               ),
                             ],

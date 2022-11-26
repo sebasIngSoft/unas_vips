@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
 class HomeCliente extends StatefulWidget {
@@ -11,11 +13,12 @@ class HomeCliente extends StatefulWidget {
 class _HomeClienteState extends State<HomeCliente> {
   @override
   Widget build(BuildContext context) {
+    final DataDB dataDB = Get.find();
     return Scaffold(
       body: Center(
         child: Container(
-          width: double.infinity,
-          height: 700,
+          width: Get.width,
+          height: Get.height,
           decoration: new BoxDecoration(
             image: new DecorationImage(
               image: new AssetImage("assets/logo_fondo.png"),
@@ -32,8 +35,11 @@ class _HomeClienteState extends State<HomeCliente> {
                     height: 200),
                 //Nombre de la persona
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text(
-                    'Bienvenid@\n     Carla',
+                    'Bienvenid@ ${dataDB.loguiado.nombre}',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

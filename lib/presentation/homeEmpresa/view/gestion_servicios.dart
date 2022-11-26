@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/homeEmpresa/view/home_empresa.dart';
 
-class GestionServicio extends StatefulWidget {
+class GestionServicio extends StatelessWidget {
   GestionServicio({Key? key}) : super(key: key);
 
   @override
-  State<GestionServicio> createState() => _GestionServicioState();
-}
-
-class _GestionServicioState extends State<GestionServicio> {
-  @override
   Widget build(BuildContext context) {
+    final DataDB dataDB = Get.find();
+
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Get.back(),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: Container(
           width: double.infinity,
@@ -58,64 +65,40 @@ class _GestionServicioState extends State<GestionServicio> {
                             Container(
                               margin: EdgeInsets.only(bottom: 50),
                               child: Column(
-                                children: [
-                                  Material(
-                                    elevation: 20,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 80),
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.6),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Manicure ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                            ),
+                                children: dataDB.listServicios
+                                    .map(
+                                      (element) => Material(
+                                        elevation: 20,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 80),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.black.withOpacity(0.6),
                                           ),
-                                          Icon(
-                                            Icons.add,
-                                            color: Color.fromARGB(
-                                                102, 252, 82, 167),
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  // SizedBox(height: 20),
-                                  Material(
-                                    elevation: 20,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 80),
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.6),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Pedicure ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                            ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                element,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.add,
+                                                color: Color.fromARGB(
+                                                    102, 252, 82, 167),
+                                                size: 30,
+                                              )
+                                            ],
                                           ),
-                                          Icon(
-                                            Icons.add,
-                                            color: Color.fromARGB(
-                                                102, 252, 82, 167),
-                                            size: 30,
-                                          )
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
+                                    )
+                                    .toList(),
                               ),
                             ),
                           ],
@@ -133,12 +116,7 @@ class _GestionServicioState extends State<GestionServicio> {
                 child: SizedBox(
                   //padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MenuEmpresa()),
-                      );
-                    },
+                    onPressed: () => Get.back(),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
                         padding: EdgeInsets.only(left: 50, right: 50)),

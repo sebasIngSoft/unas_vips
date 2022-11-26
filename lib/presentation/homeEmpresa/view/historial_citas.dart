@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:unas_vip/presentation/homeEmpresa/view/home_empresa.dart';
 
 class HitorialCitas extends StatefulWidget {
@@ -12,6 +13,14 @@ class _HitorialCitasState extends State<HitorialCitas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Get.back(),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: Container(
           width: double.infinity,
@@ -25,9 +34,7 @@ class _HitorialCitasState extends State<HitorialCitas> {
           child: Column(
             children: [
               //name
-
               SizedBox(height: 50),
-
               Container(
                 padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                 decoration:

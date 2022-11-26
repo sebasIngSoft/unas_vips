@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
+import 'package:unas_vip/presentation/login/view_model/login_view_model.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  final dataDB = Get.put(DataDB());
 
-class _LoginPageState extends State<LoginPage> {
+  LoginViewModel viewModel = LoginViewModel();
+
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController usuario = new TextEditingController();
+
+  TextEditingController contrasena = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
-          width: double.infinity,
-          height: 800,
-          decoration: new BoxDecoration(
-            image: new DecorationImage(
-              image: new AssetImage("assets/logo_fondo.png"),
+          height: Get.height,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/logo_fondo.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -29,11 +35,11 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 //Login
-                Image(
-                    image: AssetImage('assets/logo.png'),
-                    width: 200,
-                    height: 200),
-                Text(
+                const Image(
+                  image: AssetImage('assets/logo.png'),
+                  fit: BoxFit.cover,
+                ),
+                const Text(
                   'Login',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -47,12 +53,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.black87,
-                        border: Border.all(color: Color(0xFF6F0C41)),
+                        border: Border.all(color: const Color(0xFF6F0C41)),
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                      padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
                         style: TextStyle(color: Colors.white),
+                        controller: usuario,
                         decoration: InputDecoration(
                             hintText: 'Correo',
                             border: InputBorder.none,
@@ -61,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 //Password TextFieldPassword
                 Padding(
@@ -69,13 +76,17 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.black87,
-                        border: Border.all(color: Color(0xFF6F0C41)),
+                        border: Border.all(color: const Color(0xFF6F0C41)),
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                      padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: contrasena,
                         style: TextStyle(color: Colors.white),
                         obscureText: true,
+                        // onChanged: (String val) {
+                        //   contrasena = val;
+                        // },
                         decoration: InputDecoration(
                           hintText: 'Contraseña',
                           border: InputBorder.none,
@@ -85,13 +96,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
 
                 //Forget password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Si no tiene usuario puede registrarse ',
+                    const Text('Si no tiene usuario puede registrarse ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.white)),
                     TextButton(
@@ -112,19 +123,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-
-                SizedBox(height: 30),
+                Obx(() => Text(
+                      viewModel.mensaje.value,
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold),
+                    )),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MenuEmpresa()),
-                      );
-                    },
+                    onPressed: () =>
+                        viewModel.validarUsario(usuario.text, contrasena.text),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+                      backgroundColor: const Color.fromRGBO(102, 0, 51, 0.4),
                     ),
                     child: const Text(
                       'Iniciar sesión',
