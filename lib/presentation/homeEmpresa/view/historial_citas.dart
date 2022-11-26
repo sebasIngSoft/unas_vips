@@ -95,7 +95,9 @@ class _HitorialCitasState extends State<HitorialCitas> {
                                       // padding: EdgeInsets.symmetric(
                                       //     horizontal: 105, vertical: 5),
                                       decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.6),
+                                        color:
+                                            Color.fromARGB(255, 243, 213, 213)
+                                                .withOpacity(0.6),
                                       ),
                                       child: Row(
                                         children: [

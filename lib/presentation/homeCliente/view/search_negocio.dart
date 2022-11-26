@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unas_vip/domain/cita/model/cita.dart';
+import 'package:unas_vip/domain/user/model/user.dart';
 import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
@@ -9,7 +11,7 @@ class BuscarNegocio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DataDB dataDB = Get.find();
-
+    var negocio = '';
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -93,7 +95,10 @@ class BuscarNegocio extends StatelessWidget {
                                   children: dataDB.listManicuristas.value
                                       .map(
                                         (element) => ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            negocio =
+                                                element.empresa.toString();
+                                          },
                                           child: Text(
                                             element.empresa.toString(),
                                             style: TextStyle(
@@ -127,11 +132,8 @@ class BuscarNegocio extends StatelessWidget {
                     //padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SelectServicio()),
-                        );
+                        dataDB.listCitas.value.add(Cita(empresa: negocio));
+                        Get.to(SelectServicio());
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),

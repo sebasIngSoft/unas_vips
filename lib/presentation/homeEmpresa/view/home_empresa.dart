@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unas_vip/domain/user/model/user.dart';
 import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/homeEmpresa/view_model/home_empresa_view_model.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
@@ -137,6 +138,28 @@ class MenuEmpresa extends StatelessWidget {
                           padding: EdgeInsets.only(left: 80, right: 80)),
                       child: const Text(
                         'Mi Perfil',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: SizedBox(
+                    //padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        dataDB.loguiado = User();
+                        Get.offAll(LoginPage());
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
+                          padding: EdgeInsets.only(left: 80, right: 80)),
+                      child: const Text(
+                        'Cerrar sesión',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

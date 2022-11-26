@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/domain/cita/model/cita.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
 import 'package:unas_vip/presentation/homeCliente/view/home_cliente.dart';
 import 'package:unas_vip/presentation/routes/routes.dart';
 
@@ -14,6 +17,9 @@ class SelectServicio extends StatefulWidget {
 class _SelectServicioState extends State<SelectServicio> {
   @override
   Widget build(BuildContext context) {
+    final DataDB dataDB = Get.find();
+    final ListServisLocal = [];
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -57,69 +63,43 @@ class _SelectServicioState extends State<SelectServicio> {
                       padding: const EdgeInsets.only(top: 20),
                       sliver: SliverList(
                         delegate: SliverChildListDelegate(
-                          <Widget>[
+                          [
                             Container(
                               margin: EdgeInsets.only(bottom: 50),
                               child: Column(
-                                children: [
-                                  Material(
-                                    elevation: 20,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 80),
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.6),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Manicure ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                            ),
+                                  children: dataDB.listServicios
+                                      .map(
+                                        (element) => ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0.3),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 100),
                                           ),
-                                          Icon(
-                                            Icons.add,
-                                            color: Color.fromARGB(
-                                                102, 252, 82, 167),
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  // SizedBox(height: 20),
-                                  Material(
-                                    elevation: 20,
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 80),
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.6),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Pedicure ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                            ),
+                                          onPressed: () =>
+                                              ListServisLocal.add(element),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                element,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.add,
+                                                color: Color.fromARGB(
+                                                    102, 252, 82, 167),
+                                                size: 30,
+                                              )
+                                            ],
                                           ),
-                                          Icon(
-                                            Icons.add,
-                                            color: Color.fromARGB(
-                                                102, 252, 82, 167),
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                        ),
+                                      )
+                                      .toList()),
                             ),
                           ],
                         ),
@@ -137,11 +117,12 @@ class _SelectServicioState extends State<SelectServicio> {
                   //padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => horarioDisponible()),
-                      );
+                      dataDB.listCitas.value = [
+                        Cita(
+                            empresa: dataDB.listCitas.value[0].empresa,
+                            servicio: ListServisLocal)
+                      ];
+                      Get.to(horarioDisponible());
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),

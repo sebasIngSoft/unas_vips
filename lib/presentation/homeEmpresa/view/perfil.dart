@@ -49,7 +49,7 @@ class Perfil extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 100, top: 120),
                     child: Text(
-                      'Nombre: ${dataDB.loguiado.nombre}\nEmpresa: ${dataDB.loguiado.empresa}\nCorreo: ${dataDB.loguiado.correo} \n Telefon: ${dataDB.loguiado.telefono}',
+                      'Nombre: ${dataDB.loguiado.nombre}\nEmpresa: ${dataDB.loguiado.empresa ?? ''}\nCorreo: ${dataDB.loguiado.correo} \n Telefon: ${dataDB.loguiado.telefono}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -61,10 +61,7 @@ class Perfil extends StatelessWidget {
                   //padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MenuEmpresa()),
-                      );
+                      Get.back();
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),

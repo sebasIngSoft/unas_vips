@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:unas_vip/domain/cita/model/cita.dart';
+import 'package:unas_vip/infrastructure/data/data.dart';
+import 'package:unas_vip/presentation/homeCliente/view/home_cliente.dart';
 
 class horarioDisponible extends StatefulWidget {
   horarioDisponible({Key? key}) : super(key: key);
@@ -8,6 +12,9 @@ class horarioDisponible extends StatefulWidget {
 }
 
 class _horarioDisponibleState extends State<horarioDisponible> {
+  final DataDB dataDB = Get.find();
+  var fecha = '';
+  String hora = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +130,13 @@ class _horarioDisponibleState extends State<horarioDisponible> {
                                       child: Row(
                                         children: [
                                           Padding(
+                                            child: Text(
+                                              fecha,
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                              ),
+                                            ),
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 50),
                                           ),
@@ -161,11 +175,13 @@ class _horarioDisponibleState extends State<horarioDisponible> {
                   //padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => horarioDisponible()),
-                      );
+                      dataDB.listCitas.value = [
+                        Cita(
+                            empresa: dataDB.listCitas.value[0].empresa,
+                            servicio: dataDB.listCitas.value[0].servicio,
+                            fecha: fecha)
+                      ];
+                      Get.offAll(HomeCliente());
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(102, 0, 51, 0.4),
@@ -194,6 +210,10 @@ class _horarioDisponibleState extends State<horarioDisponible> {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2025),
-    );
+    ).then((value) {
+      setState(() {
+        fecha = value.toString();
+      });
+    });
   }
 }
